@@ -15,9 +15,9 @@ class PetController {
     @Autowired
     lateinit var petRepository: PetRepository
 
-    @GetMapping(produces = arrayOf("application/json"))
+    @GetMapping
     fun getAllPets() = petRepository.findAll()
 
-    @PostMapping(produces = arrayOf("application/json"), consumes = arrayOf("application/json"))
+    @PostMapping
     fun addPet(@RequestBody pet: Pet): Pet? = petRepository.save(pet)
 }

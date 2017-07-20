@@ -11,18 +11,18 @@ class CustomerController(val customerRepository: CustomerRepository) {
 
     // The need to use arrayOf() in annotations is annoying, but at least we can ommit it in default value
 
-    @GetMapping(value = "/{id}", produces = arrayOf("application/json"))
+    @GetMapping("/{id}")
     fun getCustomer(@PathVariable("id") id: Long): Customer? =
             customerRepository.findOne(id)
 
-    @GetMapping(value = "/formatted", produces = arrayOf("application/json"))
+    @GetMapping("/formatted")
     fun getAllCustomersFormatted() =
             customerRepository.findAll().map { it.toString() }
 
-    @GetMapping(produces = arrayOf("application/json"))
+    @GetMapping
     fun getAllCustomers() = customerRepository.findAll()
 
-    @PostMapping(produces = arrayOf("application/json"), consumes = arrayOf("application/json"))
+    @PostMapping
     fun addCustomer(@RequestBody customer: Customer): Customer? =
             customerRepository.save(customer)
 }
